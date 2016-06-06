@@ -1,5 +1,5 @@
 # Rain.. rain... go away, come again another day..
-## A little about the project! --Open Source-- Full project will be available. 
+## --Open Source-- Full project will be available. CopyLeft Licensing ![alt tag](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Copyleft.svg/512px-Copyleft.svg.png)
 Rain has been a program about having a companion in game, that not only acts like a humanoid character. But someone who is capable of playing a character in a hunting situation. 
 
     How will this be done? Well many see something doing something without your

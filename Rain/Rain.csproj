@@ -136,6 +136,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="sotp.dat" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

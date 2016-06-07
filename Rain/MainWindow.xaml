@@ -17,6 +17,13 @@
                       mc:Ignorable="d">
     <Grid>
         <Image gif:ImageBehavior.AnimatedSource="Resources/rain_500.gif" />
+        <Button x:Name="client_start"
+                Width="75"
+                Margin="134,-30,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="client_start_Click"
+                Content="Client" />
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>

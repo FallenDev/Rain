@@ -25,5 +25,21 @@ namespace Rain
         {
             InitializeComponent();
         }
+
+        private void client_start_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //this.OpenClient((string)null, (string)null);
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                MessageBox.Show("Check the Path in settings.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

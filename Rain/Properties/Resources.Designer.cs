@@ -71,6 +71,24 @@ namespace Rain.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C:\\Program Files (x86)\\KRU\\Dark Ages\\Darkages.exe.
+        /// </summary>
+        public static string DarkAgesPath {
+            get {
+                return ResourceManager.GetString("DarkAgesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\\Program Files (x86)\\KRU\\Dark Ages.
+        /// </summary>
+        public static string DataPath {
+            get {
+                return ResourceManager.GetString("DataPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap rain_500 {

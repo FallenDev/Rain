@@ -4,7 +4,6 @@
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:gif="http://wpfanimatedgif.codeplex.com"
-                      xmlns:local="clr-namespace:Rain"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       Title="Rain..."
                       Width="838.158"

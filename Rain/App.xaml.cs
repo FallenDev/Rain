@@ -1,4 +1,25 @@
-﻿using System;
+﻿#region License/Copyleft
+//    Rain - DarkAges Hunting Companion
+//    Copyright (C) 2016  FallenDev
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//        
+//    Should a problem occur, contact me via Skype - FallenDev
+//    Credit to the DA community of programmers, for most of their open source code.
+#endregion
+
+using System;
 using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +52,14 @@ namespace Rain
         public const long ADDRESS_PORT = 4407780;
         private static MainWindow window;
         private static List<int> _processIds = new List<int>();
+
+        internal static List<int> ProcessIds
+        {
+            get
+            {
+                return App._processIds;
+            }
+        }
 
         internal static MainWindow Window
         {

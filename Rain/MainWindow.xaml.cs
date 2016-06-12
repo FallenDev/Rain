@@ -1,25 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿#region License/Copyleft
+//    Rain - DarkAges Hunting Companion
+//    Copyright (C) 2016  FallenDev
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//        
+//    Should a problem occur, contact me via Skype - FallenDev
+//    Credit to the DA community of programmers, for most of their open source code.
+#endregion
+
+using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
 
-using Rain.Properties;
+using MahApps.Metro.Controls;
+using DAMagic;
 
 namespace Rain
 {
@@ -28,21 +35,15 @@ namespace Rain
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private static object DarkAgesPath;
-
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        //         System.Threading.Thread openC =
-        //             new System.Threading.Thread(OpenClient);
-
+        
         private void client_start_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //openC.Start();
                 OpenClient((string)null, null);
             }
             catch (System.IO.FileNotFoundException)
@@ -57,69 +58,57 @@ namespace Rain
 
         private void OpenClient(object sender, EventArgs e)
         {
-            client_start.IsEnabled = false;
-
             var clientPath = Properties.Resources.DarkAgesPath;
-            var clientHash = string.Empty;
-            var result = ClientLoadResult.Success;
-
             try
             {
                 if (!File.Exists(Rain.Properties.Resources.DarkAgesPath))
                 {
                     MessageBox.Show("Check the Path in settings.");
                 }
+                else
+                {
+                    StartupInfo startupInfo = new StartupInfo();
+                    startupInfo.Size = Marshal.SizeOf<StartupInfo>(startupInfo);
+                    ProcessInformation processInfo;
+                    SafeNativeMethods.CreateProcess(Properties.Resources.DarkAgesPath, (string)null, IntPtr.Zero, IntPtr.Zero, false, ProcessCreationFlags.Suspended, IntPtr.Zero, (string)null, ref startupInfo, out processInfo);
+                    using (ProcessMemoryStream processMemoryStream = new ProcessMemoryStream(processInfo.ProcessId, ProcessAccess.VmOperation | ProcessAccess.VmRead | ProcessAccess.VmWrite))
+                    {
+                        processMemoryStream.Position = 4384293L;
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.WriteByte((byte)144);
+                        processMemoryStream.Position = 4404130L;
+                        processMemoryStream.WriteByte((byte)235);
+                        processMemoryStream.Position = 4404162L;
+                        processMemoryStream.WriteByte((byte)106);
+                        processMemoryStream.WriteByte((byte)1);
+                        processMemoryStream.WriteByte((byte)106);
+                        processMemoryStream.WriteByte((byte)0);
+                        processMemoryStream.WriteByte((byte)106);
+                        processMemoryStream.WriteByte((byte)0);
+                        processMemoryStream.WriteByte((byte)106);
+                        processMemoryStream.WriteByte((byte)127);
+                        processMemoryStream.Position = 5744601L;
+                        processMemoryStream.WriteByte((byte)235);
+                        processMemoryStream.Position = 7290020L;
+                        processMemoryStream.WriteString("Rain");
+                        SafeNativeMethods.ResumeThread(processInfo.ThreadHandle);
+                    }
+                    Process processById = Process.GetProcessById(processInfo.ProcessId);
+                    do
+                        ;
+                    while (processById.MainWindowHandle == IntPtr.Zero);
+                    SafeNativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
+                    App.ProcessIds.Add(processInfo.ProcessId);
+                }
             }
             catch (FileNotFoundException)
             {
                 MessageBox.Show("Error occurred, check your path; Or permissions.");
             }
-            finally
-            {
-                HandleClientLoadResult(result);
-            }
         }
-
-
-
-        //             else
-        //             {
-        //                 StartupInfo startupInfo = new StartupInfo();
-        //                 startupInfo.Size = Marshal.SizeOf<StartupInfo>(startupInfo);
-        //                 ProcessInformation processInfo;
-        //                 Kernel32.CreateProcess(darkAgesPath, (string)null, IntPtr.Zero, IntPtr.Zero, false, ProcessCreationFlags.Suspended, IntPtr.Zero, (string)null, ref startupInfo, out processInfo);
-        //                 using (ProcessMemoryStream processMemoryStream = new ProcessMemoryStream(processInfo.ProcessId, ProcessAccess.VmOperation | ProcessAccess.VmRead | ProcessAccess.VmWrite))
-        //                 {
-        //                     processMemoryStream.Position = 4384293L;
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.WriteByte((byte)144);
-        //                     processMemoryStream.Position = 4404130L;
-        //                     processMemoryStream.WriteByte((byte)235);
-        //                     processMemoryStream.Position = 4404162L;
-        //                     processMemoryStream.WriteByte((byte)106);
-        //                     processMemoryStream.WriteByte((byte)1);
-        //                     processMemoryStream.WriteByte((byte)106);
-        //                     processMemoryStream.WriteByte((byte)0);
-        //                     processMemoryStream.WriteByte((byte)106);
-        //                     processMemoryStream.WriteByte((byte)0);
-        //                     processMemoryStream.WriteByte((byte)106);
-        //                     processMemoryStream.WriteByte((byte)127);
-        //                     processMemoryStream.Position = 5744601L;
-        //                     processMemoryStream.WriteByte((byte)235);
-        //                     processMemoryStream.Position = 7290020L;
-        //                     processMemoryStream.WriteString("Rain");
-        //                     Kernel32.ResumeThread(processInfo.ThreadHandle);
-        //                  }
-        //                 Process processById = Process.GetProcessById(processInfo.ProcessId);
-        //                 do
-        //                     ;
-        //                 while (processById.MainWindowHandle == IntPtr.Zero);
-        //                 User32.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
-        //                 App.ProcessIds.Add(processInfo.ProcessId);
-        //             }
     }
 }

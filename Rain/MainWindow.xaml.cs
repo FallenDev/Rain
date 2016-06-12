@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 
 using MahApps.Metro.Controls;
-using DAMagic;
+using Rain.Win32;
 
 namespace Rain
 {
@@ -67,11 +67,11 @@ namespace Rain
                 }
                 else
                 {
-                    StartupInfo startupInfo = new StartupInfo();
-                    startupInfo.Size = Marshal.SizeOf<StartupInfo>(startupInfo);
-                    ProcessInformation processInfo;
-                    SafeNativeMethods.CreateProcess(Properties.Resources.DarkAgesPath, (string)null, IntPtr.Zero, IntPtr.Zero, false, ProcessCreationFlags.Suspended, IntPtr.Zero, (string)null, ref startupInfo, out processInfo);
-                    using (ProcessMemoryStream processMemoryStream = new ProcessMemoryStream(processInfo.ProcessId, ProcessAccess.VmOperation | ProcessAccess.VmRead | ProcessAccess.VmWrite))
+                    NativeMethods.StartupInfo startupInfo = new NativeMethods.StartupInfo();
+                    startupInfo.Size = Marshal.SizeOf<NativeMethods.StartupInfo>(startupInfo);
+                    NativeMethods.ProcessInformation processInfo;
+                    NativeMethods.CreateProcess(Properties.Resources.DarkAgesPath, (string)null, IntPtr.Zero, IntPtr.Zero, false, NativeMethods.ProcessCreationFlags.Suspended, IntPtr.Zero, (string)null, ref startupInfo, out processInfo);
+                    using (ProcessMemoryStream processMemoryStream = new ProcessMemoryStream(processInfo.ProcessId, NativeMethods.ProcessAccessFlags.VmOperation | NativeMethods.ProcessAccessFlags.VmRead | NativeMethods.ProcessAccessFlags.VmWrite))
                     {
                         processMemoryStream.Position = 4384293L;
                         processMemoryStream.WriteByte((byte)144);
@@ -95,13 +95,13 @@ namespace Rain
                         processMemoryStream.WriteByte((byte)235);
                         processMemoryStream.Position = 7290020L;
                         processMemoryStream.WriteString("Rain");
-                        SafeNativeMethods.ResumeThread(processInfo.ThreadHandle);
+                        NativeMethods.ResumeThread(processInfo.ThreadHandle);
                     }
                     Process processById = Process.GetProcessById(processInfo.ProcessId);
                     do
                         ;
                     while (processById.MainWindowHandle == IntPtr.Zero);
-                    SafeNativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
+                    //NativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
                     App.ProcessIds.Add(processInfo.ProcessId);
                 }
             }

@@ -5,7 +5,7 @@ namespace Rain.Win32
 {
     internal static class NativeMethods
     {
-        #region ProcessAccess
+        #region ProcessAccessFlags
         [Flags]
         internal enum ProcessAccessFlags
         {
@@ -108,6 +108,115 @@ namespace Rain.Win32
         }
         #endregion
 
+        #region StartupInformation
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct StartupInfo
+        {
+            int size;
+            string reserved;
+            string desktop;
+            string title;
+            int x;
+            int y;
+            int width;
+            int height;
+            int XCountChars;
+            int YCountChars;
+            int fillAttribute;
+            int flags;
+            short showWindow;
+            short reserved2;
+            IntPtr reserved3;
+            IntPtr stdInputHandle;
+            IntPtr stdOutputHandle;
+            IntPtr stdErrorHandle;
+
+            public int Size
+            {
+                get { return size; }
+                set { size = value; }
+            }
+
+            public string Reserved { get { return reserved; } }
+
+            public string Desktop
+            {
+                get { return desktop; }
+                set { desktop = value; }
+            }
+
+            public string Title
+            {
+                get { return title; }
+                set { title = value; }
+            }
+
+            public int X
+            {
+                get { return x; }
+                set { x = value; }
+            }
+
+            public int Y
+            {
+                get { return y; }
+                set { y = value; }
+            }
+
+            public int Width
+            {
+                get { return width; }
+                set { width = value; }
+            }
+
+            public int Height
+            {
+                get { return height; }
+                set { height = value; }
+            }
+
+            public int FillAttribute
+            {
+                get { return fillAttribute; }
+                set { fillAttribute = value; }
+            }
+
+            public int Flags
+            {
+                get { return flags; }
+                set { flags = value; }
+            }
+
+            public short ShowWindow
+            {
+                get { return showWindow; }
+                set { showWindow = value; }
+            }
+
+            public short Reserved2 { get { return reserved2; } }
+
+            public IntPtr Reserved3 { get { return reserved3; } }
+
+            public IntPtr StandardInput
+            {
+                get { return stdInputHandle; }
+                set { stdInputHandle = value; }
+            }
+
+            public IntPtr StandardOutput
+            {
+                get { return stdOutputHandle; }
+                set { stdOutputHandle = value; }
+            }
+
+            public IntPtr StandardError
+            {
+                get { return stdErrorHandle; }
+                set { stdErrorHandle = value; }
+            }
+        }
+        #endregion
+
         #region Kernel32
         [DllImport("kernel32", EntryPoint = "CreateProcess")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -119,7 +228,7 @@ namespace Rain.Win32
             out ProcessInformation processInfo);
 
         [DllImport("kernel32", EntryPoint = "OpenProcess")]
-        internal static extern IntPtr OpenProcess(ProcessAccess access,
+        internal static extern IntPtr OpenProcess(ProcessAccessFlags access,
             bool inheritHandle, int processId);
 
         [DllImport("kernel32", EntryPoint = "ReadProcessMemory")]

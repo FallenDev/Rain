@@ -101,7 +101,7 @@ namespace Rain
                     do
                         ;
                     while (processById.MainWindowHandle == IntPtr.Zero);
-                    //NativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
+                    NativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
                     App.ProcessIds.Add(processInfo.ProcessId);
                 }
 

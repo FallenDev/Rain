@@ -249,7 +249,10 @@ namespace Rain.Win32
         #endregion
 
         #region User32
+        private const int WH_MOUSE_LL = 14;
 
+        [DllImport("user32", EntryPoint = "SetWindowText")]
+        internal static extern int SetWindowText(IntPtr hWnd, string text);
         #endregion
     }
 }

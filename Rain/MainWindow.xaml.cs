@@ -39,12 +39,12 @@ namespace Rain
         {
             InitializeComponent();
         }
-        
+
         private void client_start_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                OpenClient((string)null, null);
+                OpenClient(null, null);
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -68,7 +68,7 @@ namespace Rain
                 else
                 {
                     NativeMethods.StartupInfo startupInfo = new NativeMethods.StartupInfo();
-                    startupInfo.Size = Marshal.SizeOf<NativeMethods.StartupInfo>(startupInfo);
+                    startupInfo.Size = Marshal.SizeOf(startupInfo);
                     NativeMethods.ProcessInformation processInfo;
                     NativeMethods.CreateProcess(Properties.Resources.DarkAgesPath, (string)null, IntPtr.Zero, IntPtr.Zero, false, NativeMethods.ProcessCreationFlags.Suspended, IntPtr.Zero, (string)null, ref startupInfo, out processInfo);
                     using (ProcessMemoryStream processMemoryStream = new ProcessMemoryStream(processInfo.ProcessId, NativeMethods.ProcessAccessFlags.VmOperation | NativeMethods.ProcessAccessFlags.VmRead | NativeMethods.ProcessAccessFlags.VmWrite))
@@ -104,6 +104,7 @@ namespace Rain
                     //NativeMethods.SetWindowText(processById.MainWindowHandle, "Dark Ages : Rain");
                     App.ProcessIds.Add(processInfo.ProcessId);
                 }
+
             }
             catch (FileNotFoundException)
             {

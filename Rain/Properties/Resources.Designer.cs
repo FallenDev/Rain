@@ -71,7 +71,7 @@ namespace Rain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\\Program Files (x86)\\KRU\\Dark Ages\\Darkages.exe.
+        ///   Looks up a localized string similar to C:\Program Files (x86)\KRU\Dark Ages\Darkages.exe.
         /// </summary>
         public static string DarkAgesPath {
             get {
@@ -80,7 +80,7 @@ namespace Rain.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\\Program Files (x86)\\KRU\\Dark Ages.
+        ///   Looks up a localized string similar to C:\Program Files (x86)\KRU\Dark Ages.
         /// </summary>
         public static string DataPath {
             get {

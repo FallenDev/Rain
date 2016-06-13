@@ -11,6 +11,7 @@ namespace Rain.Win32
         {
             None = 0x0,
             // Required to create a thread.
+            Terminate = 0x0001,
             CreateThread = 0x0002,
             SetSessionId = 0x0004,
             // Required to perform an operation on the address space of a process.
@@ -20,7 +21,7 @@ namespace Rain.Win32
             // Required to write to memory in a process using WriteProcessMemory.
             VmWrite = 0x0020,
             // Required to duplicate a handle using DuplicateHandle.
-            DupHandle = 0x0040,
+            DuplicateHandle = 0x0040,
             // Required to create a process.
             CreateProcess = 0x0080,
             // Required to set memory limits using SetProcessWorkingSetSize.
@@ -77,34 +78,13 @@ namespace Rain.Win32
         [StructLayout(LayoutKind.Sequential)]
         internal struct ProcessInformation
         {
-            IntPtr processHandle;
-            IntPtr threadHandle;
-            int processId;
-            int threadId;
+            public IntPtr ProcessHandle { get; set; }
 
-            public IntPtr ProcessHandle
-            {
-                get { return processHandle; }
-                set { processHandle = value; }
-            }
+            public IntPtr ThreadHandle { get; set; }
 
-            public IntPtr ThreadHandle
-            {
-                get { return threadHandle; }
-                set { threadHandle = value; }
-            }
+            public int ProcessId { get; set; }
 
-            public int ProcessId
-            {
-                get { return processId; }
-                set { processId = value; }
-            }
-
-            public int ThreadId
-            {
-                get { return threadId; }
-                set { threadId = value; }
-            }
+            public int ThreadId { get; set; }
         }
         #endregion
 
@@ -120,8 +100,8 @@ namespace Rain.Win32
             int y;
             int width;
             int height;
-            int XCountChars;
-            int YCountChars;
+            int xCountChars;
+            int yCountChars;
             int fillAttribute;
             int flags;
             short showWindow;
@@ -175,6 +155,18 @@ namespace Rain.Win32
                 set { height = value; }
             }
 
+            public int XCountChars
+            {
+                get { return xCountChars; }
+                set { xCountChars = value; }
+            }
+
+            public int YCountChars
+            {
+                get { return yCountChars; }
+                set { yCountChars = value; }
+            }
+
             public int FillAttribute
             {
                 get { return fillAttribute; }
@@ -220,7 +212,7 @@ namespace Rain.Win32
         #region Kernel32
         [DllImport("kernel32", EntryPoint = "CreateProcess")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool CreateProcess(string applicationName,
+        public static extern bool CreateProcess(string applicationName,
             string commandLine, IntPtr processAttributes,
             IntPtr threadAttributes, bool inheritHandles,
             ProcessCreationFlags creationFlags, IntPtr environment,
@@ -228,32 +220,32 @@ namespace Rain.Win32
             out ProcessInformation processInfo);
 
         [DllImport("kernel32", EntryPoint = "OpenProcess")]
-        internal static extern IntPtr OpenProcess(ProcessAccessFlags access,
+        public static extern IntPtr OpenProcess(ProcessAccessFlags access,
             bool inheritHandle, int processId);
 
         [DllImport("kernel32", EntryPoint = "ReadProcessMemory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool ReadProcessMemory(IntPtr hProcess,
+        public static extern bool ReadProcessMemory(IntPtr hProcess,
             IntPtr lpBaseAddress, byte[] lpBuffer,
             int nSize, out int lpNumberOfBytesRead);
 
         [DllImport("kernel32", EntryPoint = "WriteProcessMemory")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool WriteProcessMemory(IntPtr hProcess,
+        public static extern bool WriteProcessMemory(IntPtr hProcess,
             IntPtr lpBaseAddress, byte[] lpBuffer, int nSize, out int lpNumberOfBytesWritten);
 
         [DllImport("kernel32", EntryPoint = "ResumeThread")]
-        internal static extern int ResumeThread(IntPtr hThread);
+        public static extern int ResumeThread(IntPtr hThread);
 
         [DllImport("kernel32", EntryPoint = "CloseHandle")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        internal static extern bool CloseHandle(IntPtr handle);
+        public static extern bool CloseHandle(IntPtr handle);
 
         [DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
-        internal static extern IntPtr GetModuleHandle(string lpModuleName);
+        public static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [DllImport("kernel32", EntryPoint = "GetLastError")]
-        internal static extern int GetLastError();
+        public static extern int GetLastError();
         #endregion
 
         #region User32

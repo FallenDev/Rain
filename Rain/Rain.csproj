@@ -105,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\MouseDelegate.cs" />
     <Compile Include="Win32\NativeMethods.cs" />
     <Compile Include="Win32\ProcessMemoryStream.cs" />
     <Page Include="MainWindow.xaml">
@@ -172,9 +173,7 @@
   <ItemGroup>
     <Resource Include="64.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

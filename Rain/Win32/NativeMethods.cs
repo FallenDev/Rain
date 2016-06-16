@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+using Rain.Data;
+
 namespace Rain.Win32
 {
     internal static class NativeMethods
@@ -252,7 +254,34 @@ namespace Rain.Win32
         private const int WH_MOUSE_LL = 14;
 
         [DllImport("user32", EntryPoint = "SetWindowText")]
-        internal static extern int SetWindowText(IntPtr hWnd, string text);
+        internal static extern int SetWindowText(IntPtr hWnd, string windowText);
+
+        [DllImport("user32", EntryPoint = "GetForegroundWindow")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32", EntryPoint = "SetWindowsHookEx")]
+        public static extern IntPtr SetWindowsHookEx(int idhook,
+            LowLevelMouseProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32", EntryPoint = "GetWindowRect")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetWindowRect(IntPtr hWnd, ref RECT lpRect);
         #endregion
+
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
     }
 }

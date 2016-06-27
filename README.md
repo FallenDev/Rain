@@ -30,3 +30,5 @@ Pull appropriate code from sources, and sort through the methods and variables.
     -- Susanoo ++ a very fast library, giving SQL result mappings
     -- WpfAnimatedGif ++ a library that allows .gif as a background image
     -- zlib.net ++ compression library ((old, might find something else; might also not be needed))
+    
+Look into **http://www.codeproject.com/Articles/345105/Memory-Stream-Multiplexer-write-and-read-from-many**

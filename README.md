@@ -16,15 +16,15 @@ Stable release, with working multi-client uploaded.
 Next goals: Getting Program to inject into the client and loopback data. 
 
 # Next steps
-**DONE** Create WPF base program for which I can pull code into. 
+**DONE** ~~Create WPF base program for which I can pull code into.~~ 
 
 ~~Create a new memory library for which is exclusive to **Rain**.~~
 
-Pull appropriate code from sources, and sort through the methods and variables.
+**NOT IMPLEMENTED** Pull appropriate code from sources, and sort through the methods and variables.
 
     -- This will take some time, since there is a lot of nonsense and messy code.
     
-**DONE** Compile code into C# WPF, then sort available libraries which will be needed.
+**DONE** ~~Compile code into C# WPF, then sort available libraries which will be needed.~~
 
     -- MahApps.Metro ++ a toolkit for creating Metro Style WPF applications
     -- Susanoo ++ a very fast library, giving SQL result mappings

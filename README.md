@@ -18,9 +18,9 @@ Next goals: Getting Program to inject into the client and loopback data.
 # Next steps
 **DONE** ~~Create WPF base program for which I can pull code into.~~ 
 
-~~Create a new memory library for which is exclusive to **Rain**.~~
+**NOT IMPLEMENTED** ~~Create a new memory library for which is exclusive to **Rain**.~~
 
-**NOT IMPLEMENTED** Pull appropriate code from sources, and sort through the methods and variables.
+Pull appropriate code from sources, and sort through the methods and variables.
 
     -- This will take some time, since there is a lot of nonsense and messy code.
     

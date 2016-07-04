@@ -12,7 +12,7 @@ Current Version: Working Multi-Client / No logic built in yet.
 Stable release, with working multi-client uploaded. 
 
 Next goals: Getting Program to inject into the client and loopback data. 
-    I'm actually debating on which way to go about doing this.
+    I'm actually debating on which way to go about doing this. For there are many.
 
 # Next steps
 **DONE** ~~Create WPF base program for which I can pull code into.~~ 

@@ -3,9 +3,7 @@
 
 Current Version: Working Multi-Client / No logic built in yet. 
 
-**This is made so that those whom use it, are fully aware that botting is illegal according to TOS.** 
-
-**Although this is not a bot, many will see it as such because of its automation features. Remember that.**
+**DISCLAIMER:** 
 
     This program is not supported by Kru nor is is legal within game; neither is Sleephunter, or macro keyboards ...
     ... or multi clients; windowing programs; or any other 3rd party program(s) for that matter.
@@ -14,13 +12,14 @@ Current Version: Working Multi-Client / No logic built in yet.
 Stable release, with working multi-client uploaded. 
 
 Next goals: Getting Program to inject into the client and loopback data. 
+    I'm actually debating on which way to go about doing this.
 
 # Next steps
 **DONE** ~~Create WPF base program for which I can pull code into.~~ 
 
-**NOT IMPLEMENTED** ~~Create a new memory library for which is exclusive to **Rain**.~~
+**NOT GETTING IMPLEMENTED** ~~Create a new memory library for which is exclusive to **Rain**.~~
 
-Pull appropriate code from sources, and sort through the methods and variables.
+Looking through other projects for code to be repurposed.
 
     -- This will take some time, since there is a lot of nonsense and messy code.
     

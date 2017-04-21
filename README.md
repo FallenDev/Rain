@@ -1,5 +1,6 @@
-# This project has been on hold for quite some months. Currently I am
-# Designing my own video game, and haven't had time to donate to this.
+# This project has been on hold for quite some months. 
+# Currently I am designing my own video game, and haven't 
+had time to donate to this.
 
 
 # Rain.. rain... go away, come again another day..

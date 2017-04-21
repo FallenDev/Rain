@@ -1,3 +1,7 @@
+# This project has been on hold for quite some months. Currently I am
+# Designing my own video game, and haven't had time to donate to this.
+
+
 # Rain.. rain... go away, come again another day..
 ## *--Open Source-- CopyLeft Licensing*        ![alt tag](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Cc-sa.svg/64px-Cc-sa.svg.png)
 
@@ -5,7 +9,7 @@ Current Version: Working Multi-Client / No logic built in yet.
 
 **DISCLAIMER:** 
 
-    This program is not supported by Kru nor is is legal within game; neither is Sleephunter, or macro keyboards ...
+    This program is not supported by Kru nor is it legal within game; neither is Sleephunter, or macro keyboards ...
     ... or multi clients; windowing programs; or any other 3rd party program(s) for that matter.
 
 ## Goals and future development objectives
